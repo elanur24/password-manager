@@ -1,18 +1,22 @@
-## Getting Started
+# Şifre Yöneticisi (Java)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Parolaları ana parola ile şifreleyerek yerel bir dosyada saklayan, konsol tabanlı bir şifre yöneticisi. Java ile nesne tabanlı tasarım ve güvenli parola saklama pratiklerini göstermek için geliştirildi.
 
-## Folder Structure
+## Özellikler
 
-The workspace contains two folders by default, where:
+- Kayıt ekleme, listeleme ve silme (site, kullanıcı adı, şifre)
+- Rastgele güçlü parola üretici
+- Tüm kayıtlar ana parolayla şifrelenmiş tek bir dosyada (`vault.dat`) saklanır
+- Yanlış ana parolada kasa açılmaz
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Kullanılan güvenlik yöntemleri
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+| Konu | Yöntem |
+|------|--------|
+| Anahtar türetme | PBKDF2WithHmacSHA256, 210.000 iterasyon, rastgele salt |
+| Şifreleme | AES-256-GCM (hem gizlilik hem bütünlük doğrulaması) |
+| Rastgelelik | `SecureRandom` (salt, IV ve parola üretimi) |
+| Parola işleme | `char[]` kullanımı, `toString` içinde şifre yazdırılmaz |
+| Karşılaştırma | `MessageDigest.isEqual` ile sabit süreli karşılaştırma |
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Kriptografik algoritmalar
