@@ -1,8 +1,11 @@
-import model.Credential;
+
+import crypto.PasswordHasher;
 
 public class App {
-    public static void main(String[] args) {
-        Credential c = new Credential("github.com", "elanur", "deneme123");
-        System.out.println(c);
+    public static void main(String[] args) throws Exception {
+        String stored = PasswordHasher.hash("anaParola123".toCharArray());
+        System.out.println(stored);
+        System.out.println(PasswordHasher.verify("anaParola123".toCharArray(), stored));
+        System.out.println(PasswordHasher.verify("yanlisParola".toCharArray(), stored));
     }
 }
