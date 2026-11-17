@@ -1,11 +1,17 @@
 
-import crypto.PasswordHasher;
+import crypto.EncryptionService;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        String stored = PasswordHasher.hash("anaParola123".toCharArray());
-        System.out.println(stored);
-        System.out.println(PasswordHasher.verify("anaParola123".toCharArray(), stored));
-        System.out.println(PasswordHasher.verify("yanlisParola".toCharArray(), stored));
+        char[] master = "anaParola123".toCharArray();
+        String encrypted = EncryptionService.encrypt("deneme123", master);
+        System.out.println(encrypted);
+        System.out.println(EncryptionService.decrypt(encrypted, master));
+
+        try {
+            EncryptionService.decrypt(encrypted, "yanlisParola".toCharArray());
+        } catch (Exception e) {
+            System.out.println("Yanlis parola: cozulemedi");
+        }
     }
 }
