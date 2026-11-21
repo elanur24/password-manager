@@ -19,4 +19,4 @@ Parolaları ana parola ile şifreleyerek yerel bir dosyada saklayan, konsol taba
 | Parola işleme | `char[]` kullanımı, `toString` içinde şifre yazdırılmaz |
 | Karşılaştırma | `MessageDigest.isEqual` ile sabit süreli karşılaştırma |
 
-Kriptografik algoritmalar
+Kriptografik algoritmalar 
